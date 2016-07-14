@@ -1,0 +1,8 @@
+<%= simple_form_for @keyword, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :name %>
+  <%#= error_span(@keyword[:name]) %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                keywords_path, :class => 'btn btn-default' %>
+<% end %>

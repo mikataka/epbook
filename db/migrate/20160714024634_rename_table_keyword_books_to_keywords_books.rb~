@@ -1,0 +1,4 @@
+class RenameTableKeywordBooksToKeywordsBooks < ActiveRecord::Migration
+  def change
+  end
+end

@@ -1,0 +1,4 @@
+class AddColumnInKeyword < ActiveRecord::Migration
+  def change
+  end
+end

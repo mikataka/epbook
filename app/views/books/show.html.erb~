@@ -1,0 +1,47 @@
+<%- model_class = Book -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => @book.title %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name("ISBN コード") %>:</strong></dt>
+  <dd><%= @book.isbn %></dd>
+  <dt><strong><%= model_class.human_attribute_name("著者") %>:</strong></dt>
+  <dd><%= @book.author %></dd>
+  <dt><strong><%= model_class.human_attribute_name("価格") %>:</strong></dt>
+  <dd><%= @book.price %><%= p "円" %></dd>
+  <dt><strong><%= model_class.human_attribute_name("出版社") %>:</strong></dt>
+  <dd><%= @book.publish %></dd>
+  <dt><strong><%= model_class.human_attribute_name("刊行日") %>:</strong></dt>
+  <dd><%= @book.published %></dd>
+  <dt><strong><%= model_class.human_attribute_name("場所") %>:</strong></dt>
+  <dd><%= @book.place.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name("棚番号") %>:</strong></dt>
+  <dd><%= @book.br %></dd>
+  <dt><strong><%= model_class.human_attribute_name("入荷状況") %>:</strong></dt>
+  <dd>
+    <% if @book.arrival %>
+    <%= p "入荷済" %>
+    <% else %>
+    <%= p "未入荷" %>
+    <% end %>
+  </dd>
+  <dt><strong><%= model_class.human_attribute_name("貸出状況") %>:</strong></dt>
+  <dd>
+    <% if @book.lending_check %>
+    <%= p "貸出中" %>
+    <% else %>
+    <%= p "在庫あり" %>
+    <% end %>
+  </dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              books_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_book_path(@book), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              book_path(@book),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

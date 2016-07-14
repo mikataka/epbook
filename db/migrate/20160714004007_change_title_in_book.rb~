@@ -1,0 +1,4 @@
+class ChangeTitleInBook < ActiveRecord::Migration
+  def change
+  end
+end

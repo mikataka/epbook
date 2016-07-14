@@ -1,0 +1,4 @@
+class ChangeColumnInBook < ActiveRecord::Migration
+  def change
+  end
+end

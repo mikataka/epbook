@@ -1,0 +1,98 @@
+<%= form_for @book, :html => { :class => "form-horizontal book" } do |f| %>
+
+  <% if @book.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @book.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :"タイトル", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :title, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:title) %>
+  </div>
+  <div class="form-group">
+    <%= p "ISBN コードは[978] から始まる13 桁の数字をハイフン抜きで入力してください. 10 桁の場合は,[978]を含むバーコード下の数字を入力してください."%>
+    <%= p "学会誌等のISBN コードが無い/不明なものは先頭の[978] 以降を全て0 で埋めて13 桁にしてください.."%>
+    <%= f.label :"ISBN コード", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :isbn, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:isbn) %>
+  </div>
+  <div class="form-group">
+    <%= p "複数人著者がいる場合は半角スペースの後に続けて入力してください."%>
+    <%= f.label :"著者", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :author, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:author) %>
+  </div>
+  <div class="form-group">
+    <%= p "本体価格がある場合にはそちらを入力してください.税込価格しか記述が無い場合はそちらを記述してください."%>
+    <%= f.label :"価格", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.number_field :price, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:price) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :"出版社", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :publish, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:publish) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :"刊行日", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.date_select :published, use_month_numbers: true, start_year: 1900, end_year: Time.now.year, default: Time.zone.now, date_separator: '/' %>
+    </div>
+    <%=f.error_span(:published) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :"場所", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%#= f.text_field :place_id, :class => 'form-control' %>
+      <%= f.collection_select :place_id, @places, :id, :name, {prompt: "選択してください"}, {class: "form-control"} %>
+    </div>
+    <%=f.error_span(:place_id) %>
+  </div>
+  <div class="form-group">
+    <%= p "棚の行番号[A-Z] + '-' + '棚の列番号[1-9]' を入力してください."%>
+    <%= f.label :"棚番号", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :br, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:br) %>
+  </div>
+  <div class="form-group">
+    <%= p "入荷済みの場合はチェックを入れてください."%>
+    <%= f.label :"入荷情報", :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%#= f.text_field :arrival, :class => 'form-control' %>
+      <%= f.check_box :arrival %>
+    </div>
+    <%=f.error_span(:arrival) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                books_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>
