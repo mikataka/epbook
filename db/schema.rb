@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160714024634) do
+ActiveRecord::Schema.define(version: 20160720035436) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title",                                        null: false
@@ -26,9 +26,15 @@ ActiveRecord::Schema.define(version: 20160714024634) do
     t.boolean  "lending_check", default: false,                null: false
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
+    t.integer  "edition",       default: 1
   end
 
   add_index "books", ["place_id"], name: "index_books_on_place_id"
+
+  create_table "books_keywords", id: false, force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "keyword_id"
+  end
 
   create_table "keywords", force: :cascade do |t|
     t.string   "name",       null: false
@@ -36,16 +42,6 @@ ActiveRecord::Schema.define(version: 20160714024634) do
     t.datetime "updated_at", null: false
     t.string   "en_name"
   end
-
-  create_table "keywords_books", force: :cascade do |t|
-    t.integer  "keyword_id"
-    t.integer  "book_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "keywords_books", ["book_id"], name: "index_keywords_books_on_book_id"
-  add_index "keywords_books", ["keyword_id"], name: "index_keywords_books_on_keyword_id"
 
   create_table "places", force: :cascade do |t|
     t.string   "name",       null: false

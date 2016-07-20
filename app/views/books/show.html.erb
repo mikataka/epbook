@@ -10,6 +10,8 @@
   <dd><%= @book.author %></dd>
   <dt><strong><%= model_class.human_attribute_name("価格") %>:</strong></dt>
   <dd><%= @book.price %><%= p "円" %></dd>
+  <dt><strong><%= model_class.human_attribute_name("版数") %>:</strong></dt>
+  <dd><%= p "第"%><%= @book.edition %><%= p "版" %></dd>
   <dt><strong><%= model_class.human_attribute_name("出版社") %>:</strong></dt>
   <dd><%= @book.publish %></dd>
   <dt><strong><%= model_class.human_attribute_name("刊行日") %>:</strong></dt>
@@ -32,6 +34,12 @@
     <%= p "貸出中" %>
     <% else %>
     <%= p "在庫あり" %>
+    <% end %>
+  </dd>
+  <dt><strong><%= model_class.human_attribute_name("Keywords") %>:</strong></dt>
+  <dd>
+    <% @book.keywords.each do |keyword| %>
+      <%= keyword.name %>
     <% end %>
   </dd>
 </dl>

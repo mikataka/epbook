@@ -1,0 +1,6 @@
+class CreateBooksKeywords < ActiveRecord::Migration
+  def change
+    create_table :books_keywords do |t|
+    end
+  end
+end

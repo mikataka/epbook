@@ -19,5 +19,5 @@ Keyword.create(id: 6, name: "地球", en_name: "Earth")
 Keyword.create(id: 7, name: "熱力学", en_name: "thermodynamics")
 Keyword.create(id: 8, name: "雑誌", en_name: "magazine")
 
-Book.create(id: 1, title: "Ruby on Rails 4 アプリケーションプログラミング", isbn: "9784774164106", author: "山田祥寛", price: 3500, publish: "技術評論社", published: "2014-5-15", place_id: 3, br: "A-1", arrival: true, lending_check: false)
-Book.create(id: 2, title: "一般気象学", isbn: "9784130627061", author: "小倉義光", price: 2800, publish: "東京大学出版社", published: "2000-3-10", place_id: 2, br: "B-1", arrival: true, lending_check: false)
+Book.create(id: 1, title: "Ruby on Rails 4 アプリケーションプログラミング", isbn: "9784774164106", author: "山田祥寛", price: 3500, publish: "技術評論社", published: "2014-5-15", place_id: 3, br: "A-1", arrival: true, lending_check: false, edition: 1)
+Book.create(id: 2, title: "一般気象学", isbn: "9784130627061", author: "小倉義光", price: 2800, publish: "東京大学出版社", published: "2000-3-10", place_id: 2, br: "B-1", arrival: true, lending_check: false, edition: 2)
