@@ -76,4 +76,20 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.default_url_options = { :host => 'https://jet.ep.sci.hokudai.ac.jp' }
+  config.action_mailer.delivery_method = :smtp
+#SENDGRID_USERNAME=mikataka@ep.sci.hokudai.ac.jp
+#SENDGRID_PASSWORD=bkN1GiPB2Cu3U
+
+ActionMailer::Base.smtp_settings = {
+  :address        => 'smtp.gmail.com',
+  :port           => '587',
+  :authentication => :plain,
+  :user_name      => ENV['SENDGRID_USERNAME'],
+  :password       => ENV['SENDGRID_PASSWORD'],
+  :domain         => 'gmail.com',
+  :enable_starttls_auto => true
+}
+
 end
