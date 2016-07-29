@@ -3,7 +3,7 @@
 <!--  
 <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 -->
-  <h1><%=t '.title', :default => "書籍一覧" %></h1>
+<h1><%=t '.title', :default => "書籍一覧" %></h1>
 </div>
 <div class="row">
   <div class="col-sm-6">
@@ -34,7 +34,7 @@
       <th><%= model_class.human_attribute_name("タイトル") %></th>
       <th><%= model_class.human_attribute_name("著者") %></th>
       <th><%= model_class.human_attribute_name("出版社") %></th>
-      <th><%= model_class.human_attribute_name("場所") %></th>
+      <th><%#= model_class.human_attribute_name("場所") %></th>
       <th><%= model_class.human_attribute_name("棚番号") %></th>
       <th><%= model_class.human_attribute_name("貸出状況") %></th>
       <% if user_signed_in? %>
@@ -48,7 +48,7 @@
         <td><%= link_to book.title, book_path(book) %></td>
         <td><%= book.author %></td>
         <td><%= book.publish %></td>
-        <td><%= book.place.name %></td>
+        <td><%#= book.place.name %></td>
         <td><%= book.br %></td>
         <td>
 	  <% if book.lending_check %>
